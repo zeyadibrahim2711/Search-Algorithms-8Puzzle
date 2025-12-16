@@ -1,0 +1,8 @@
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\bin\Debug\SearchAlgorithmsAI.exe.config
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\bin\Debug\SearchAlgorithmsAI.exe
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\bin\Debug\SearchAlgorithmsAI.pdb
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\obj\Debug\SearchAlgorithmsAI.csproj.AssemblyReference.cache
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\obj\Debug\SearchAlgorithmsAI.csproj.CoreCompileInputs.cache
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\obj\Debug\SearchAlgorithmsAI.exe
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\obj\Debug\SearchAlgorithmsAI.pdb
+C:\Users\zeyad arakip\Desktop\SearchAlgorithmsAI8Puzzle\src\SearchAlgorithmsAI\obj\Debug\SearchAlgorithmsAI.exe.config
