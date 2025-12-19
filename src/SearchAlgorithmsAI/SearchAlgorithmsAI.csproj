@@ -47,11 +47,9 @@
     <Compile Include="BFS.cs" />
     <Compile Include="DFS.cs" />
     <Compile Include="HillClimbing.cs" />
-    <Compile Include="IDS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Puzzle.cs" />
-    <Compile Include="UCS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

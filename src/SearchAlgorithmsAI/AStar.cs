@@ -1,65 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace SearchAlgorithmsAI
 {
     public class AStar
     {
-        public static Puzzle Search(Puzzle start)
+        public static int Nodes;
+
+        public static Puzzle ExploreStateSpaceAStar(Puzzle start)
         {
-            SortedDictionary<int, Queue<Puzzle>> frontier =
-                new SortedDictionary<int, Queue<Puzzle>>();
+            Puzzle[] open = new Puzzle[1000];
+            int size = 0;
+            Nodes = 0;
 
-            HashSet<Puzzle> visited = new HashSet<Puzzle>();
+            open[size++] = start;
 
-            Enqueue(frontier, start, start.ManhattanDistance());
-
-            while (frontier.Count > 0)
+            while (size > 0)
             {
-                Puzzle current = Dequeue(frontier);
+                int best = 0;
+                int bestF = open[0].Cost + open[0].ManhattanDistance();
+
+                for (int i = 1; i < size; i++)
+                {
+                    int f = open[i].Cost + open[i].ManhattanDistance();
+                    if (f < bestF)
+                    {
+                        bestF = f;
+                        best = i;
+                    }
+                }
+
+                Puzzle current = open[best];
+                open[best] = open[--size];
+                Nodes++;
 
                 if (current.IsGoal())
                     return current;
 
-                if (visited.Contains(current))
-                    continue;
-
-                visited.Add(current);
-
-                foreach (Puzzle child in current.GetSuccessors())
+                foreach (Puzzle child in current.GetChildren())
                 {
-                    if (!visited.Contains(child))
-                    {
-                        int priority = child.Cost + child.ManhattanDistance();
-                        Enqueue(frontier, child, priority);
-                    }
+                    if (child != null)
+                        open[size++] = child;
                 }
             }
             return null;
-        }
-
-        private static void Enqueue(
-            SortedDictionary<int, Queue<Puzzle>> frontier,
-            Puzzle node,
-            int priority)
-        {
-            if (!frontier.ContainsKey(priority))
-                frontier[priority] = new Queue<Puzzle>();
-
-            frontier[priority].Enqueue(node);
-        }
-
-        private static Puzzle Dequeue(
-            SortedDictionary<int, Queue<Puzzle>> frontier)
-        {
-            var firstKey = new List<int>(frontier.Keys)[0];
-            var queue = frontier[firstKey];
-            Puzzle node = queue.Dequeue();
-
-            if (queue.Count == 0)
-                frontier.Remove(firstKey);
-
-            return node;
         }
     }
 }

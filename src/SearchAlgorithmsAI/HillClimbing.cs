@@ -6,28 +6,42 @@ namespace SearchAlgorithmsAI
 {
     public class HillClimbing
     {
-        public static Puzzle Search(Puzzle start)
+        public static int Nodes;
+
+        public static Puzzle ExploreStateSpaceHillClimbing(Puzzle start)
         {
             Puzzle current = start;
+            Nodes = 0;
 
-            while (true)
+            for (int i = 0; i < 50; i++)
             {
+                Nodes++;
+
                 if (current.IsGoal())
                     return current;
 
-                var neighbors = current.GetSuccessors();
-                Puzzle bestNeighbor = neighbors
-                    .OrderBy(n => n.ManhattanDistance())
-                    .FirstOrDefault();
+                Puzzle best = null;
+                int bestH = int.MaxValue;
 
-                if (bestNeighbor == null ||
-                    bestNeighbor.ManhattanDistance() >= current.ManhattanDistance())
+                foreach (Puzzle n in current.GetChildren())
                 {
-                    return null; // Local optimum
+                    if (n == null) continue;
+
+                    int h = n.ManhattanDistance();
+                    if (h < bestH)
+                    {
+                        bestH = h;
+                        best = n;
+                    }
                 }
 
-                current = bestNeighbor;
+                if (best == null || bestH >= current.ManhattanDistance())
+                    return null;
+
+                best.Parent = current;
+                current = best;
             }
+            return null;
         }
     }
 }

@@ -5,28 +5,27 @@ namespace SearchAlgorithmsAI
 {
     public class BFS
     {
-        public static Puzzle Search(Puzzle start)
+        public static int Nodes;
+
+        public static Puzzle ExploreStateSpaceBFS(Puzzle start)
         {
-            Queue<Puzzle> queue = new Queue<Puzzle>();
-            HashSet<Puzzle> visited = new HashSet<Puzzle>();
+            Queue<Puzzle> q = new Queue<Puzzle>();
+            Nodes = 0;
 
-            queue.Enqueue(start);
-            visited.Add(start);
+            q.Enqueue(start);
 
-            while (queue.Count > 0)
+            while (q.Count > 0)
             {
-                Puzzle current = queue.Dequeue();
+                Puzzle current = q.Dequeue();
+                Nodes++;
 
                 if (current.IsGoal())
                     return current;
 
-                foreach (Puzzle child in current.GetSuccessors())
+                foreach (Puzzle child in current.GetChildren())
                 {
-                    if (!visited.Contains(child))
-                    {
-                        visited.Add(child);
-                        queue.Enqueue(child);
-                    }
+                    if (child != null)
+                        q.Enqueue(child);
                 }
             }
             return null;

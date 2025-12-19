@@ -9,45 +9,84 @@ namespace SearchAlgorithmsAI
         static void Main(string[] args)
         {
             int[] startState = { 1, 2, 3, 4, 0, 6, 7, 5, 8 };
+            int[] goalState = { 1, 2, 3, 4, 5, 6, 7, 8, 0 };
+
             Puzzle start = new Puzzle(startState);
 
-            Console.WriteLine("8-Puzzle Search Algorithms");
+            Console.WriteLine("8-Puzzle Search Algorithms\n");
             Console.WriteLine("1. BFS");
             Console.WriteLine("2. DFS");
-            Console.WriteLine("3. UCS");
-            Console.WriteLine("4. IDS");
-            Console.WriteLine("5. A* (Manhattan)");
-            Console.WriteLine("6. Hill Climbing");
-            Console.Write("Choose algorithm: ");
+            Console.WriteLine("3. A* (Manhattan Distance)");
+            Console.WriteLine("4. Hill Climbing");
+            Console.Write("\nChoose algorithm: ");
 
             int choice = int.Parse(Console.ReadLine());
+
             Puzzle result = null;
+            string algorithmName = "";
+            bool isOptimal = false;
+            int nodesExplored = 0;
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            Console.WriteLine("\nInitial State:");
+            start.PrintState();
 
-            switch (choice)
+            Console.WriteLine("Goal State:");
+            new Puzzle(goalState).PrintState();
+
+            Stopwatch sw = Stopwatch.StartNew();
+
+            if (choice == 1)
             {
-                case 1: result = BFS.Search(start); break;
-                case 2: result = DFS.Search(start); break;
-                case 3: result = UCS.Search(start); break;
-                case 4: result = IDS.Search(start); break;
-                case 5: result = AStar.Search(start); break;
-                case 6: result = HillClimbing.Search(start); break;
-                default: Console.WriteLine("Invalid choice"); return;
+                algorithmName = "BFS";
+                isOptimal = true;
+                result = BFS.ExploreStateSpaceBFS(start);
+                nodesExplored = BFS.Nodes;
+            }
+            else if (choice == 2)
+            {
+                algorithmName = "DFS";
+                isOptimal = false;
+                result = DFS.ExploreStateSpaceDFS(start);
+                nodesExplored = DFS.Nodes;
+            }
+            else if (choice == 3)
+            {
+                algorithmName = "A* (Manhattan Distance)";
+                isOptimal = true;
+                result = AStar.ExploreStateSpaceAStar(start);
+                nodesExplored = AStar.Nodes;
+            }
+            else if (choice == 4)
+            {
+                algorithmName = "Hill Climbing";
+                isOptimal = false;
+                result = HillClimbing.ExploreStateSpaceHillClimbing(start);
+                nodesExplored = HillClimbing.Nodes;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice");
+                return;
             }
 
             sw.Stop();
 
+            Console.WriteLine($"\nAlgorithm: {algorithmName}");
+
             if (result == null)
             {
                 Console.WriteLine("No solution found.");
+                Console.WriteLine($"Nodes Explored: {nodesExplored}");
+                Console.WriteLine($"Time (ms): {sw.ElapsedMilliseconds}");
                 return;
             }
 
             PrintSolution(result);
 
+            Console.WriteLine($"Nodes Explored: {nodesExplored}");
+            Console.WriteLine($"Optimal Solution: {(isOptimal ? "Yes" : "No")}");
             Console.WriteLine($"Time (ms): {sw.ElapsedMilliseconds}");
+
             Console.ReadLine();
         }
 
@@ -68,11 +107,10 @@ namespace SearchAlgorithmsAI
 
             while (path.Count > 0)
             {
-                path.Pop().Print();
+                path.Pop().PrintState();
             }
 
-            Console.WriteLine($"Steps: {steps}");
+            Console.WriteLine($"Steps: {steps}\n");
         }
-
     }
 }
