@@ -3,9 +3,10 @@ Team Contributions
 1. Name: Zeyad Ibrahim Abdullatif Arakip
    Student ID: 2023093
    Contribution:
-   BFS, DFS, UCS implementation
+   BFS, DFS implementation
 
 2. Name: Mostafa Ahmed Abuelyazid Elsaeedy
    Student ID: 2023213
    Contribution:
-   IDS,A*, Hill Climbing implementation
+
+   A*, Hill Climbing implementation
