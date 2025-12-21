@@ -17,7 +17,7 @@ A C# console application that solves the **8-Puzzle problem** using classical **
 
 * **Breadth-First Search (BFS)** — guarantees optimal solutions
 * **Depth-First Search (DFS)** — memory-efficient but non-optimal
-* **A* Search (Manhattan Distance)** — fastest and most efficient
+* **A\* Search (Manhattan Distance)** — efficient and optimal informed search
 * **Hill Climbing** — fast local search (may fail in some cases)
 
 ---
@@ -88,3 +88,4 @@ A C# console application that solves the **8-Puzzle problem** using classical **
 ---
 
 📘 A detailed report is available in the **`report`** folder.
+
